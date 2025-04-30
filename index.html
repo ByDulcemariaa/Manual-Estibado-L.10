@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <!-- Para móvil: ancho del dispositivo y escala inicial -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Manual de Estibados</title>
   <style>
@@ -41,7 +42,7 @@
     .watermark span {
       transform: rotate(-45deg);
       font-size: 8vw;              /* Se adapta al ancho de pantalla */
-      color: rgba(255,0,0,0.2);    /* menos opaco para no tapar todo */
+      color: rgba(255,0,0,0.2);    /* opacidad ligera */
       margin: 5%;
       white-space: nowrap;
     }
@@ -72,12 +73,11 @@
         e.preventDefault();
       }
     });
-    // 3) Temporizador: 90 000 ms = 1 min 30 s
+    // 3) Temporizador de 1 min 30 s (90 000 ms)
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('viewer').style.display = 'none';
-        const ex = document.getElementById('expired');
-        ex.style.display = 'flex';
+        document.getElementById('expired').style.display = 'flex';
       }, 90000);
     });
   </script>
@@ -104,4 +104,5 @@
 
 </body>
 </html>
+
 
