@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manual de Estibado</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+    #viewer {
+      position: relative;
+      width: 100%; height: 100%;
+      background: #fff;
+    }
+    #pages {
+      width: 100%; height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    #pages img {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      pointer-events: none;
+    }
+    #expired {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #fff;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.2rem;
+      z-index: 10;
+    }
+  </style>
+  <script>
+    // Bloqueos
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey && (e.key === 's' || e.key === 'p')) || e.key === 'PrintScreen') {
+        e.preventDefault();
+      }
+    });
+
+    window.addEventListener('load', () => {
+      // Generar imágenes del 2 al 22
+      const container = document.getElementById('pages');
+      for (let i = 2; i <= 22; i++) {
+        const img = document.createElement('img');
+        img.src = `${i}.png`;
+        img.alt = `Página ${i}`;
+        container.appendChild(img);
+      }
+      // Temporizador 1m30s
+      setTimeout(() => {
+        document.getElementById('viewer').style.display = 'none';
+        document.getElementById('expired').style.display = 'flex';
+      }, 90000);
+    });
+  </script>
+</head>
+<body>
+
+  <div id="viewer">
+    <div id="pages"><!-- Aquí se insertan las imágenes --></div>
+  </div>
+
+  <div id="expired">
+    <h1>Sesión expirada</h1>
+    <p>El acceso ha finalizado.</p>
+  </div>
+
+</body>
+</html>
+
+
+
+
+
+
